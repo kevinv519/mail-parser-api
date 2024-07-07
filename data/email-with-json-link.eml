@@ -1,0 +1,89 @@
+Delivered-To: kevin.vela519@gmail.com
+Received: by 2002:a17:902:9696:b0:1f9:aff8:4326 with SMTP id n22csp4170074plp;
+        Fri, 5 Jul 2024 20:17:09 -0700 (PDT)
+X-Received: by 2002:a05:6122:6607:b0:4ed:14e:9342 with SMTP id 71dfb90a1353d-4f2f3e4327fmr7214532e0c.1.1720235829163;
+        Fri, 05 Jul 2024 20:17:09 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1720235829; cv=none;
+        d=google.com; s=arc-20160816;
+        b=jiojxIJ3VdiKJwpT27I/kpvZiLICOhYsHr6ptYeiBMJuy0byeSaCscqhTp4NSNSyNs
+         PhSfCR/DHpTZ/d6xwep8IrwH8puBSIXfNwLcOAVx/KJ+doFQnbmxA1Mw+x6ZJ6Q0U4Sr
+         xErsQYW7eSRi2ByHhI7uVZdzcdCXcLkHE031GYBKWPyAkLmO7FZhCGmVxq0xWavZyrDw
+         mog9aJCc/sqOe4Nh6NlWl4/6baLCNZL2jwj9tPk97NfIJIX4vDsL8OZaIWXXoSdZtaQx
+         uD3cBR24mTMqsBahYyV9w9Ui6isWe3rKbQjq4P/Qe+mlshJxFlR5MhYunGZVJyxO6znQ
+         EqvA==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=6VzD8dtrrlgk/l1m+WmIvsa7b754jwou395tIxeb7yM=;
+        fh=SS1ZoCmkS2WNlHfNq3Tn2w6uu6MZGtQevk//tj3GWvw=;
+        b=ST+UCc0lpsbfS32modZD//g0SvLgHI7IK0O8yxPn9ZKMFJuN2ZO84ohAn1uzBqDgzR
+         iRvRPvLcRwgoK5XIBTHLOP0OSvgHWMKLP/2O3TkPZXJgeRFjDD/Q70Zq71qGomJuqKsM
+         81TxuQweOAG9mTr/6QChd8Ut/qiWOJwCOzM1p86c9O7Hj2Qx8VooIJdgL33Lgdt5fbTL
+         YfETp3uwBTkAKTUXhCj55YEwbIziIlp+WhbyYu4G8rfr1JoT43h1wR7jaepzNkFinmuB
+         ioDQT8Yho/STNV6mtmZb8q/MUA0U3CeFVbpPvS59QWUG1CiX2cubHHwhDH91vqlrJsgm
+         OhfQ==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@uca-edu-sv.20230601.gappssmtp.com header.s=20230601 header.b=2Glt+Ovb;
+       spf=pass (google.com: domain of 00018616@uca.edu.sv designates 209.85.220.41 as permitted sender) smtp.mailfrom=00018616@uca.edu.sv
+Return-Path: <00018616@uca.edu.sv>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 71dfb90a1353d-4f2ee52b676sor1389132e0c.5.2024.07.05.20.17.09
+        for <kevin.vela519@gmail.com>
+        (Google Transport Security);
+        Fri, 05 Jul 2024 20:17:09 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 00018616@uca.edu.sv designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@uca-edu-sv.20230601.gappssmtp.com header.s=20230601 header.b=2Glt+Ovb;
+       spf=pass (google.com: domain of 00018616@uca.edu.sv designates 209.85.220.41 as permitted sender) smtp.mailfrom=00018616@uca.edu.sv
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=uca-edu-sv.20230601.gappssmtp.com; s=20230601; t=1720235828; x=1720840628; dara=google.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=6VzD8dtrrlgk/l1m+WmIvsa7b754jwou395tIxeb7yM=;
+        b=2Glt+OvbCgI9mDqmI8pIAuk4S6/f432f689I0P2kM8t5DIQN2fbrzEuOmMjRQnINlm
+         aBqcEkS9gY4aEXVLenoputQh2KKUKUoJW/xFzANOgBziFv15XA0XCFWGDM63UkUGW1/u
+         YqSmr851lYiQe5Rx2y0zFuIrpUrzuFM0CfGbn+paaydCtIrVO3W6kOHvCjzmyxZCzJuv
+         MZ2wbU+USJ8I/DHKM+PywS39T4nYmYBgiHOvFkvYYyHYZoz/sgWyxlu5UGTR8mXo5fKz
+         5+4ZxI4d6Ig5c52yFM6TZKp8G0WUjt+2zgJF4QSh1k82v1Ixdfia9AFkgh4cJCwLz/50
+         eihw==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720235828; x=1720840628;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=6VzD8dtrrlgk/l1m+WmIvsa7b754jwou395tIxeb7yM=;
+        b=YkzOJCDvbaKE8Bdx6kIfe7JOkeVtVyR8PSkvGseiRTR1QLr7Hksms6S+Sf+3sVDcCE
+         m3H34+/Q5M0io+j8h5IIDDE3M+rnKaxZ1tc97rusYKLlwEF0sp3ICO0sYoNvlRu4wxIt
+         nBU09Lv8ybO7fG2jnru7zkaY/WgdQCXBAlW7rH0cxK0+CcXgyuqYNisM/CIj6+2pJlvV
+         ZvhZPoz+1A3IOE8VhLy4yRm1oF46XNHCi0tDa1xZkS3cQ2lvPCdgYtpH/3byOO9NyXjK
+         HXs4AhPbWLpBi4AgVMyvfoO87ENU7puwbZXDliB0XDq9Ik1bdm2ptggElwuMygUThpbt
+         V0LA==
+X-Gm-Message-State: AOJu0YztDS4OOjQGFy7wN6y7Zc5DSQyR2KL+4hpPQYqJ9u96yC/jXM6Z
+	V/0T7Y73kIQ26+2SsJQatCNDrtBbMwL0JQXHMDsOrwA+QBjEj7WqP5DNwDq1fogOonBNqv6Z1j4
+	bG4XguzfAV5kqA2fheWIe6+svF3xQm0qNxs7F2ayt4ZhDselNIFA=
+X-Google-Smtp-Source: AGHT+IH/PaIA9xG2ycFglMMBF6nAjyBcoAkdZWlGrAXKFG+5mhYCXmWycKEDhD2bThHq4JlFi1hxDK2fbRDLDp+J9pY=
+X-Received: by 2002:a05:6122:4fa8:b0:4ef:530b:9d56 with SMTP id
+ 71dfb90a1353d-4f2f3e95cc8mr9263551e0c.6.1720235828485; Fri, 05 Jul 2024
+ 20:17:08 -0700 (PDT)
+MIME-Version: 1.0
+From: KEVIN ENMANUEL VELASQUEZ MENDOZA <00018616@uca.edu.sv>
+Date: Fri, 5 Jul 2024 21:16:57 -0600
+Message-ID: <CAGk08J4JePZ-Vn_GVrjDp_9jO9jhCZzribWUPi1jj4nKtWJeOA@mail.gmail.com>
+Subject: Test with JSON link
+To: "kevin.vela519@gmail.com" <kevin.vela519@gmail.com>
+Content-Type: multipart/alternative; boundary="0000000000007cb8d2061c8b9db2"
+
+--0000000000007cb8d2061c8b9db2
+Content-Type: text/plain; charset="UTF-8"
+
+Hey! Here is the link with the JSON response:
+https://jsonplaceholder.typicode.com/users/1
+
+Sincerely,
+Kevin
+
+--0000000000007cb8d2061c8b9db2
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="ltr">Hey! Here is the link with the JSON response:<div><a href="https://jsonplaceholder.typicode.com/users/1">https://jsonplaceholder.typicode.com/users/1</a><br></div><div><br></div><div>Sincerely,</div><div>Kevin</div></div>
+
+--0000000000007cb8d2061c8b9db2--

@@ -1,0 +1,108 @@
+Delivered-To: kevin.vela519@gmail.com
+Received: by 2002:a17:902:9696:b0:1f9:aff8:4326 with SMTP id n22csp4169626plp;
+        Fri, 5 Jul 2024 20:15:07 -0700 (PDT)
+X-Received: by 2002:a05:6122:4a19:b0:4f2:e1c9:fc1b with SMTP id 71dfb90a1353d-4f2f3e5e25dmr7026743e0c.4.1720235706781;
+        Fri, 05 Jul 2024 20:15:06 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1720235706; cv=none;
+        d=google.com; s=arc-20160816;
+        b=CHNe0VoEqcxtzGXuFJvmBi0IlcqRfa5uFqfDNexQYFC12kFkq2Y6y7hpTeT7CWdla8
+         cftvNArOf0rZ1y+o4vrTyoALPCQJLHlDTIMDYqKJEkJERtXHxC3XQsUusadIbk4N7xgC
+         o0Rp2ZOsWp5UY2FFRnkms5J+p06ics3rakkglXOu9jfx0aQgC4NausoL8GydtOGFMSz9
+         V7HmbfCSKPXrNcGUOxf9mBuaArrMBHKLtf/MXjm+rJPcGgimLjF5i/pIpUAJPAyrkqWZ
+         9Iq5wX05SEKeNwLtWBihzfZXqsjh4q3mSp8JThXCLLf1P+SYVFPF7koW6LABWBg/r7BC
+         cEfw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=Jx+T7okgu4HZO2CKB64H5XDeYNm0Ybsq1H8Unasb3LY=;
+        fh=SS1ZoCmkS2WNlHfNq3Tn2w6uu6MZGtQevk//tj3GWvw=;
+        b=JYZbl0O782FNaajbHjEegBMfOlbREgKzlZF7wS6/BFwnYzSx0DN8o4ZKbFQGvdVdrT
+         8R4edaNglUh99o8L+NJqPdUxuffiMoYxhvPdWZ2bVmXubV5Z6mre4mkESVylV9O8aDrP
+         c+0Qqu6d7fvTl1a7fLZPBIRqdsEfmOiAsbfpJShGmLHLyEJ/CU/rqpyhDLzNxHcFiFEO
+         8IRQnZo19NVGuW2fKpaM9NIyRPslF5W/01lcO3c3lSPiHZt4rajTDzcN+/fCBqxsmNGh
+         xUIrt/YUyGZnyyMxTtnL9IcVoBTu7gDbi+oQHgjpFdOqNNtTUf7PrAjUTU1Dt7f8d2S3
+         tGMg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@uca-edu-sv.20230601.gappssmtp.com header.s=20230601 header.b=OtGgrjKg;
+       spf=pass (google.com: domain of 00018616@uca.edu.sv designates 209.85.220.41 as permitted sender) smtp.mailfrom=00018616@uca.edu.sv
+Return-Path: <00018616@uca.edu.sv>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id 71dfb90a1353d-4f2fb7f776bsor1088550e0c.0.2024.07.05.20.15.06
+        for <kevin.vela519@gmail.com>
+        (Google Transport Security);
+        Fri, 05 Jul 2024 20:15:06 -0700 (PDT)
+Received-SPF: pass (google.com: domain of 00018616@uca.edu.sv designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@uca-edu-sv.20230601.gappssmtp.com header.s=20230601 header.b=OtGgrjKg;
+       spf=pass (google.com: domain of 00018616@uca.edu.sv designates 209.85.220.41 as permitted sender) smtp.mailfrom=00018616@uca.edu.sv
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=uca-edu-sv.20230601.gappssmtp.com; s=20230601; t=1720235706; x=1720840506; dara=google.com;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=Jx+T7okgu4HZO2CKB64H5XDeYNm0Ybsq1H8Unasb3LY=;
+        b=OtGgrjKgY7OF2Gt7MJgNfpN3ME/ll1cHcJlHGX8TSAbO14RFQo8NDW8cnDvJYYm3Pg
+         YgOaQLTU2kwp+s9UkivCECOnzgGqLFDunRROxDRZWlYGtj2SjRy4/8fv/ADOuE/+EiIH
+         NGMjgVWmjazdFzwIBtR74CS7wZv6MwE0hTr6OPxK/jaEcDUc97ynGuSO52k0J9U0tAtJ
+         MxME+agKQYrtsFXmQk6DwfHOx8DlQ/qn/uLJrOqxfkAaisrrk58t2JI3/rCbWPBHrWDh
+         5LUMG8fZKrs7/X/m0KqmyPUL3k0TmN83iStyylCDW56CisjOIv+jgTYHxG+GqFDsF8Kc
+         Xkqg==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1720235706; x=1720840506;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=Jx+T7okgu4HZO2CKB64H5XDeYNm0Ybsq1H8Unasb3LY=;
+        b=ZmswyYwWY/Z5WBwULVzMtwD/Keuj+KMtomRIn7TnAmkPlQSTtnUKxb+XyCVGcUYF8s
+         mMK6QOxbJb2z5UcE3s1F2TfHfF6GRkhDsDDwrQoJm2FissBGLqcCStxUmaL2ETvZ6QE6
+         7X6sZCnzSYIHdGtbpgqRTdQsE/vm21HIR4DrbHDMxPRX/8NiDCNEPSiS1DZnJAbxb4vP
+         Ij6yCHF8ygVvN3xnFMcn+CGIHoFfnr2wfodrOKlgk2uZ58ohTdqHKkggq2yAMrfN/7FT
+         3sQq4jLe1SQXLnhjCynVC9A+zyOS0KlCkhrf8hXMwcx3/+4koR6Fuh/SQRGPYJW9OnFw
+         Jlqg==
+X-Gm-Message-State: AOJu0YzDvjYrGvgSABAzkPOZLTVyxGw/Xlof9dMDSy5n8b2oMx0So6/r
+	awNYj+MCdJI1mOcjFbSXv7Ly/3esnYFifHsrSfmiUgoUTcvcq9iSA+1YWeHuusxdNBuatkqGlQe
+	F/G5gIXP+nMWjVhbdaBlJiYwyZPWh4HtoyzeGxZzu1nuGMyxf
+X-Google-Smtp-Source: AGHT+IF8hIT93uqCOm8l4/1WftqLWQ6la/57MpnOgrByrteOuG4g1zTP3/1SLMSfN57DG8Txthpd2/Khk2IEW3KBNwE=
+X-Received: by 2002:a05:6122:3a01:b0:4ef:27e0:3f8c with SMTP id
+ 71dfb90a1353d-4f2f3ad2622mr7326974e0c.0.1720235705963; Fri, 05 Jul 2024
+ 20:15:05 -0700 (PDT)
+MIME-Version: 1.0
+From: KEVIN ENMANUEL VELASQUEZ MENDOZA <00018616@uca.edu.sv>
+Date: Fri, 5 Jul 2024 21:14:54 -0600
+Message-ID: <CAGk08J5JOGocvQ=4MBMyRhoYUtKaHQoRpQWGErMV20GRoLjSGA@mail.gmail.com>
+Subject: Test email with JSON attachment
+To: "kevin.vela519@gmail.com" <kevin.vela519@gmail.com>
+Content-Type: multipart/mixed; boundary="0000000000002f45da061c8b968a"
+
+--0000000000002f45da061c8b968a
+Content-Type: multipart/alternative; boundary="0000000000002f45da061c8b9688"
+
+--0000000000002f45da061c8b9688
+Content-Type: text/plain; charset="UTF-8"
+
+Hey! I attach the JSON response.
+
+Sincerely,
+Kevin
+
+--0000000000002f45da061c8b9688
+Content-Type: text/html; charset="UTF-8"
+
+<div dir="ltr">Hey! I attach the JSON response.<div><br></div><div>Sincerely,</div><div>Kevin</div></div>
+
+--0000000000002f45da061c8b9688--
+--0000000000002f45da061c8b968a
+Content-Type: application/json; name="post-1.json"
+Content-Disposition: attachment; filename="post-1.json"
+Content-Transfer-Encoding: base64
+Content-ID: <f_ly9g7van0>
+X-Attachment-Id: f_ly9g7van0
+
+ewogICJpZCI6IDEsCiAgIm5hbWUiOiAiTGVhbm5lIEdyYWhhbSIsCiAgInVzZXJuYW1lIjogIkJy
+ZXQiLAogICJlbWFpbCI6ICJTaW5jZXJlQGFwcmlsLmJpeiIsCiAgImFkZHJlc3MiOiB7CiAgICAi
+c3RyZWV0IjogIkt1bGFzIExpZ2h0IiwKICAgICJzdWl0ZSI6ICJBcHQuIDU1NiIsCiAgICAiY2l0
+eSI6ICJHd2VuYm9yb3VnaCIsCiAgICAiemlwY29kZSI6ICI5Mjk5OC0zODc0IiwKICAgICJnZW8i
+OiB7CiAgICAgICJsYXQiOiAiLTM3LjMxNTkiLAogICAgICAibG5nIjogIjgxLjE0OTYiCiAgICB9
+CiAgfSwKICAicGhvbmUiOiAiMS03NzAtNzM2LTgwMzEgeDU2NDQyIiwKICAid2Vic2l0ZSI6ICJo
+aWxkZWdhcmQub3JnIiwKICAiY29tcGFueSI6IHsKICAgICJuYW1lIjogIlJvbWFndWVyYS1Dcm9u
+YSIsCiAgICAiY2F0Y2hQaHJhc2UiOiAiTXVsdGktbGF5ZXJlZCBjbGllbnQtc2VydmVyIG5ldXJh
+bC1uZXQiLAogICAgImJzIjogImhhcm5lc3MgcmVhbC10aW1lIGUtbWFya2V0cyIKICB9Cn0=
+--0000000000002f45da061c8b968a--
