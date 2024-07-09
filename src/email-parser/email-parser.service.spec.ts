@@ -1,13 +1,12 @@
 import { HttpService } from '@nestjs/axios';
 import { Test, TestingModule } from '@nestjs/testing';
+import * as fsAsync from 'fs/promises';
+import { join } from 'path';
+import { of } from 'rxjs';
 import { httpServiceMock } from '../common/mocks/http.service.mock';
 import { EmailParserService } from './email-parser.service';
 import { AttachmentProcessor } from './processors/attachment.processor';
 import { HtmlContentProcessor } from './processors/html-content.processor';
-import * as fsAsync from 'fs/promises';
-import { readFile } from 'fs';
-import { join } from 'path';
-import { of } from 'rxjs';
 
 const processorMock = () => ({
   process: jest.fn(),
