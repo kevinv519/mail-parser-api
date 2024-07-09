@@ -28,7 +28,7 @@ export class EmailParserService {
     return processor.process(mailContent);
   }
 
-  async getEmailContentFromSource(source: string): Promise<ParsedMail> {
+  private async getEmailContentFromSource(source: string): Promise<ParsedMail> {
     if (isURL(source, { require_protocol: true, protocols: ['https', 'http'] })) {
       const response = await lastValueFrom(this.httpService.get(source));
 
