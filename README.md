@@ -20,6 +20,7 @@ This API mainly focus on parsing email files (`.eml`) to return JSON content for
 2. The endpoint will return the first JSON like data found. If there are two or more attachments (or links) that have JSON data, only the first one will be returned.
 3. For processing local files, there is a `data` folder in the root directory of the project. All email files that you want to test should be put in there, as the application limits its search to that specific directory.
 4. I did not add OpenAPI documentation as there is mostly a single endpoint of interest, and it is easily testable using the web browser (HTTP GET for the win!)
+5. When fetching the content for email links that point to a website, no scripts will be executed. If the visibility of the link depends on executing scipts, it will not work. If you want to test the `nested link` behavior, you can use the `nested-json-link.eml` file provided.
 
 ## How to test the APP
 
