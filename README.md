@@ -1,30 +1,39 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
 ## Description
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This API mainly focus on parsing email files (`.eml`) to return JSON content for the following scenarios:
+
+1. Email content has a JSON attachment.
+2. Email content has a link that returns the JSON data.
+3. Email content has a link to a website that contains another link to the actual JSON data.
+
+### Stack and libraries
+
+- Node.js 20
+- NestJS v10
+- mailparser
+- jsdom
+- axios
+
+### Known limitations and assumptions
+
+1. Attachments have priority over links. If there are attachments in the email, but none of them is JSON, it will throw an error, even if the email HTML content has a link for scenarios 2 or 3.
+2. The endpoint will return the first JSON like data found. If there are two or more attachments (or links) that have JSON data, only the first one will be returned.
+3. For processing local files, there is a `data` folder in the root directory of the project. All email files that you want to test should be put in there, as the application limits its search to that specific directory.
+4. I did not add OpenAPI documentation as there is mostly a single endpoint of interest, and it is easily testable using the web browser (HTTP GET for the win!)
+
+## How to test the APP
+
+The application is deployed at https://mail-parser-api.onrender.com/. Unfortunately, I'm using the free tier, which means that the application shuts down after a period of inactivity. Try access the URL provided above and please have a little bit of patience the first time while it starts.
+
+Now, to the point. The endpoint you probably want to test is `https://mail-parser-api.onrender.com/email-parser?source=` where source can be a filename (or path) or a full URL. There are a couple of files in the `data` directory of the repository that you could use to test the functionality. For instance: `https://raw.githubusercontent.com/kevinv519/mail-parser-api/main/data/email-with-json-attachment.eml`. Or you could provide one of your own.
+
+Other resources you could use to test different scenarios:
+
+- `email-with-json-attachment.eml` -> success response with data
+- `email-with-json-link.eml` -> success response with same data as the first one
+- `nested-json-link.eml` -> success response with some JSON data (different from the former because of the actual HTML content for the nested link)
+- `pdf-attachment.eml` -> 422 response because attachment is of type PDF
+- `no-json-links.eml` -> 422 response because email content does not have links that return JSON data. And the nested content of those links also do not return JSON data.
 
 ## Installation
 
@@ -47,27 +56,18 @@ $ npm run start:prod
 
 ## Test
 
+I have added strong unit tests for the Processors and the EmailParserService. Make sure to check out the test coverage 😉
+
 ```bash
 # unit tests
 $ npm run test
 
-# e2e tests
-$ npm run test:e2e
 
 # test coverage
 $ npm run test:cov
 ```
 
-## Support
+## Facts you may find interesting
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
-
-## License
-
-Nest is [MIT licensed](LICENSE).
+- You'll probably notice that I'm using the strategy pattern for the processors! It is super easy to extend the functionality for more scenarios, if needed.
+- JSDOM does not execute any scripts by default, so where are safe from any malicious attack.
