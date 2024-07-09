@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, UnprocessableEntityException } from '@nestjs/common';
 import { ParsedMail } from 'mailparser';
 import { JsonProcessor } from './processor.interface';
 
@@ -10,6 +10,6 @@ export class AttachmentProcessor implements JsonProcessor {
         return JSON.parse(attachment.content.toString('utf-8'));
       }
     }
-    throw new Error('Could not found JSON attachments');
+    throw new UnprocessableEntityException('Could not find JSON attachments in the email source.');
   }
 }

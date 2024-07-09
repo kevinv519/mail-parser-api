@@ -1,10 +1,10 @@
 import { HttpService } from '@nestjs/axios';
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable, Logger, UnprocessableEntityException } from '@nestjs/common';
+import { isURL } from 'class-validator';
 import { JSDOM } from 'jsdom';
 import { ParsedMail } from 'mailparser';
-import { JsonProcessor } from './processor.interface';
 import { lastValueFrom } from 'rxjs';
-import { isURL } from 'class-validator';
+import { JsonProcessor } from './processor.interface';
 
 @Injectable()
 export class HtmlContentProcessor implements JsonProcessor {
@@ -41,7 +41,7 @@ export class HtmlContentProcessor implements JsonProcessor {
 
     this.logger.debug('Nested content from original email links did not contain a link to a JSON response either.');
 
-    throw new Error('Email did not have a reference to a JSON link');
+    throw new UnprocessableEntityException('Could not find a reference to a JSON link in the email source.');
   }
 
   /**
